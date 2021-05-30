@@ -43,8 +43,15 @@
         <!-- ======= Home Section ======= -->
         <%@include file="home.jsp" %>
         
-        <!-- Main Section -->
-        <%@include file="main.jsp" %>
+         <!--Main Section--> 
+        <%--<%@include file="main.jsp" %>--%>
+        <main id="main">
+              "
+        <%@include file="blogs.jsp"%>
+        <%@include file="features.jsp"%>
+        <%@include file="faq.jsp"%>
+        
+    </main>
         
         <!-- ======= Footer ======= -->
         <%@include file="footer.jsp" %>

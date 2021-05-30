@@ -1,6 +1,6 @@
  <!-- Main Section -->
     <main id="main">
-      <!-- ======= Services Section ======= -->
+      <!-- ======= Blogs Section ======= -->
       <section id="blogs" class="blogs">
         <div class="container">
           <div class="section-title align-items-center">
@@ -86,15 +86,20 @@
           </div>
         </div>
       </section>
-      <!-- End Services Section -->
+      <!-- End Blogs Section -->
 
       <!-- ======= Features Section ======= -->
       <section id="features" class="features">
         <div class="container">
-             <div class="section-title align-items-center">
+            
+         <div class="section-title align-items-center">
             <b><h2>Features</h2></b>
           </div>
           <div class="row">
+              <div
+              class="image col-lg-6 order-2 order-lg-1"
+              style="background-image: url('img/features.png')"
+            ></div>    
             <div class="col-lg-6 order-2 order-lg-1">
               <div class="icon-box mt-5 mt-lg-0">
                 <i class="bx bx-receipt"></i>
