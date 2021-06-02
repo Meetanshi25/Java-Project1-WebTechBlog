@@ -4,10 +4,12 @@
     Author     : MEETANSHI
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="https://kit.fontawesome.com/d0e42bb668.js" crossorigin="anonymous"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Signup Page</title>
 
@@ -31,20 +33,20 @@
       rel="stylesheet"
     />
     <link href="css/style.css" rel="stylesheet"/>
-    <link href="font-awesome.min.css" rel="stylesheet" />
+    <!--<link href="font-awesome.min.css" rel="stylesheet" />-->
     <link href="css/login.css" rel="stylesheet" />
     
     </head>
     <body> 
         
         <!-- ======= Header ======= -->
-        <%@include file="navbar.jsp" %>
+        <%@include file="navbar2.jsp" %>
         
         <!-- ======= Sign Up Form Section====== -->
                        <section id="signup" class="d-flex flex-column justify-content-center" style="background-color: #E9967A">     
             <div class="container h-100 " style="background-color: #E9967A">
         <div class="row h-100 justify-content-center align-items-center">
-            <form class="col-md-12">
+            <form method="POST" action="RegisterServlet" class="col-md-12" id="register-form">
                 <div class="AppForm shadow-lg">
                     <div class="row">
                         <div class="col-md-6">
@@ -61,23 +63,23 @@
             <b><h2>SignUp</h2></b>
           </div>
                                 <div class="form-group position-relative mb-4">
-                                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" id="username"
+                                    <input type="text" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" id="username" name="user_name"
                                         placeholder="Full Name">
                                         
                                 </div>
                                 <div class="form-group position-relative mb-4">
-                                    <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" id="useremail"
+                                    <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" id="useremail" name="user_email"
                                         placeholder="Email Id">
                                        
                                 </div>
                                 <div class="form-group position-relative mb-4">
-                                    <input type="date" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" id="userdob">
+                                    <input type="date" placeholder="yyyy-mm-dd"  class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" name="user_dob"  id="userdob">
                                         
                                 </div>
 
 
                                 <div class="form-group position-relative mb-4">
-                                    <input type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" id="password"
+                                    <input type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" id="password" name="user_password"
                                         placeholder="Password">
                                         
 
@@ -85,7 +87,7 @@
                                 <div class="row  mt-4 mb-4">
                                     <div class="col-md-6">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                            <input class="form-check-input"  name="check" type="checkbox"  id="defaultCheck1">
                                             <label class="form-check-label" for="defaultCheck1">
                                                 Accept Terms & Conditions
                                             </label>
@@ -96,8 +98,11 @@
                                     </div>
                                 </div>
 
-                                <button class="btn btn-success btn-block shadow border-0 py-2 text-uppercase ">
-                                    Login
+                                
+                                <div class="container text-center" id="loader" style="display: none"><span class="fa fa-refresh fa-spin fa-3x"></span>
+                                    <h3>Please Wait</h3></div>
+                                <button class="btn btn-success btn-block shadow border-0 py-2 text-uppercase " id="submit">
+                                    Sign-Up
                                 </button>
 
                                 <p class="text-center mt-5">
@@ -120,6 +125,12 @@
         </div>
     </div>
   </section>
+        
+        
+         <!-- ======= Faq ======= -->
+        <main id="main">
+        <%@include file="faq.jsp" %>
+        </main>
         
         <!-- ======= Footer ======= -->
         <%@include file="footer.jsp" %>
@@ -148,7 +159,60 @@
       crossorigin="anonymous"
     ></script>
     <script src="jquery/jquery.easing.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/navbar2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            console.log("loaded....");
+            
+            $('#register-form').on('submit',function(event){
+                event.preventDefault();
+                
+                   
+                let form=new FormData(this);
+                
+                $('#submit').hide();
+                $('#loader').show();
+                
+                //send form to register servlet:
+                
+                $.ajax({
+                    url: "RegisterServlet",
+                    type: 'POST',
+                    data: form,
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(data);
+                        $('#submit').show();
+                         $('#loader').hide();
+                         
+                         
+                         if(data.trim()==='done')
+                         {
+                             
+                         
+                         
+                      swal("SignUp Successfull.Redirecting to the login page")
+                   .then((value) => {
+                    window.location="login.jsp";
+                   }); 
+                         }
+                         else
+                         {
+                             swal(data);
+                         }
+                   
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#submit').show();
+                         $('#loader').hide();
+                        swal("OOPs! Something went Wrong!");
+                    },
+                    processData: false,
+                    contentType: false
+                });
+            });
+        });
+        </script>
     </body>
 </html>
 

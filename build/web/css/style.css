@@ -593,6 +593,8 @@ section {
 --------------------------------------------------------------*/
 .faq {
   padding: 0;
+  padding-bottom: 41px;
+  padding-top: 55px;
 }
 
 .faq .content {

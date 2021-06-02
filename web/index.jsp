@@ -57,7 +57,7 @@
         <%@include file="footer.jsp" %>
         
         <!-- ======= Preloader======= -->
-        <!--<div id="preloader"></div>-->
+        <div id="preloader"></div>
         
             <!-- JS Files -->
      <!-- cdn js import -->

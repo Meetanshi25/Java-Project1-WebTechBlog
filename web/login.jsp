@@ -37,9 +37,9 @@
     <body > 
         
         <!-- ======= Header ======= -->
-        <%@include file="navbar.jsp" %>
+        <%@include file="navbar2.jsp" %>
         
-        <!-- ======= logi Up Form Section====== -->
+        <!-- ======= login Form Section====== -->
         <section id="login" class="d-flex flex-column justify-content-center" style="background-color: #E9967A">     
             <div class="container h-100 " style="background-color: #E9967A">
         <div class="row h-100 justify-content-center align-items-center">
@@ -109,13 +109,20 @@
     </div>
   </section>
 
-       
+        <main id="main">
+              "
+        <%--<%@include file="blogs.jsp"%>--%>
+        <%--<%@include file="features.jsp"%>--%>
+        <%@include file="faq.jsp"%>
+        
+    </main>
+
         
         <!-- ======= Footer ======= -->
         <%@include file="footer.jsp" %>
         
         <!-- ======= Preloader======= -->
-        <!--<div id="preloader"></div>-->
+        <div id="preloader"></div>
         
             <!-- JS Files -->
      <!-- cdn js import -->
@@ -138,7 +145,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="jquery/jquery.easing.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/navbar2.js"></script>
     </body>
 </html>
 
