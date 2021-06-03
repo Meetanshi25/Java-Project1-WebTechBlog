@@ -17,9 +17,10 @@ public class User {
     
     //variables
     private int id;
-    private String name, password,email;
+    private String name, password,email,about;
     private LocalDate date;
     private Timestamp dateTime;
+    private String profile;
 
     
     //constructors
@@ -92,6 +93,22 @@ public class User {
     public void setDateTime(Timestamp dateTime) {
         this.dateTime = dateTime;
     } 
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
     
     
 }

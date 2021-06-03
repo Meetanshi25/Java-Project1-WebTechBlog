@@ -1,5 +1,5 @@
 <!-- ======= Home Section ======= -->
-    <section id="home" class="d-flex flex-column justify-content-center"  style="background-image: url('img/home-bg.jpg')">
+    <section id="home" class="d-flex flex-column justify-content-center"  style="background-image: url('img/homebg1.jpg')">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-xl-8">

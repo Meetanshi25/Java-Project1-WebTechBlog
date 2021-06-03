@@ -2,7 +2,9 @@
     Document   : login
     Created on : 30 May, 2021, 11:11:05 AM
     Author     : MEETANSHI
---%>
+--%><%@page import="com.webtech.blog.entities.Message"%>
+
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -43,7 +45,7 @@
         <section id="login" class="d-flex flex-column justify-content-center" style="background-color: #E9967A">     
             <div class="container h-100 " style="background-color: #E9967A">
         <div class="row h-100 justify-content-center align-items-center">
-            <form class="col-md-12">
+            <form action="LoginServlet" method="POST" class="col-md-12">
                 <div class="AppForm shadow-lg">
                     <div class="row">
                         <div class="col-md-6">
@@ -59,34 +61,45 @@
                                 <div class="section-title align-items-center">
                                 <b><h2>Login</h2></b>
                                  </div>
+                                
+                               
+                                
+      <% 
+    Message m=(Message)session.getAttribute("msg");
+    
+if(m!=null)
+{
+    %>
+     <div class="alert <%=m.getCssClass() %>" role="alert">
+ <%= m.getContent() %>
+</div>
+     
+     <%
+         
+         session.removeAttribute("msg");
+         }
+         %>                          
+                                
+                                
+                                
                                 <div class="form-group position-relative mb-4">
-                                    <input type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" id="useremail"
+                                    <input name="email" required type="email" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" id="useremail"
                                         placeholder="Email Id">
                                         
                                 </div>
                                 <div class="form-group position-relative mb-4">
-                                    <input type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" id="password"
+                                    <input name="password" required type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none" id="password"
                                         placeholder="Password">
                                        
 
                                 </div>
-                                <div class="row  mt-4 mb-4">
-                                    <div class="col-md-6">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                            <label class="form-check-label" for="defaultCheck1">
-                                                Remember me
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 text-right">
-                                       
-                                    </div>
-                                </div>
 
-                                <button class="btn btn-success btn-block shadow border-0 py-2 text-uppercase ">
+
+                                <div class="container">  <button class="btn btn-success btn-block shadow border-0 py-2 text-uppercase ">
                                     Login
-                                </button>
+                                    </button></div>
+                                 
+                                
 
                                 <p class="text-center mt-5">
                                     Don't have an account?
@@ -122,7 +135,7 @@
         <%@include file="footer.jsp" %>
         
         <!-- ======= Preloader======= -->
-        <div id="preloader"></div>
+        <!--<div id="preloader"></div>-->
         
             <!-- JS Files -->
      <!-- cdn js import -->
