@@ -113,7 +113,7 @@ public class EditServlet extends HttpServlet {
                 Message msg = new Message("Something went wrong..", "error", "alert-danger");
                 s.setAttribute("msg", msg);
             }
-            
+             
             response.sendRedirect("profile.jsp");
             
             

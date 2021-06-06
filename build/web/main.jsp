@@ -65,7 +65,7 @@
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
               <div class="icon-box">
                 <div class="icon"><i class="bx bx-slideshow"></i></div>
-                <h4><a href="">Internet of Thing</a></h4>
+                <h4><a href="">Cloud Computing</a></h4>
                 <p>
                   Quis consequatur saepe eligendi voluptatem consequatur dolor
                   consequuntur

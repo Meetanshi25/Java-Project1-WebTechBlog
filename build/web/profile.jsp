@@ -3,6 +3,10 @@
     Created on : 2 Jun, 2021, 8:25:40 PM
     Author     : MEETANSHI
 --%>
+<%@page import="com.webtech.blog.dao.PostDao"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.webtech.blog.entities.Category"%>
+<%@page import="com.webtech.blog.helper.ConnectionProvider"%>
 <%@page import="com.webtech.blog.entities.User"%>
 <%@page errorPage="errorpage.jsp" %>
 <%User user=(User)session.getAttribute("currentuser");
@@ -18,6 +22,7 @@ if(user==null)
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="https://kit.fontawesome.com/d0e42bb668.js" crossorigin="anonymous"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Profile </title>
         <link
@@ -39,6 +44,7 @@ if(user==null)
     />
     <link href="css/style.css" rel="stylesheet"/>
     <link href="css/login.css" rel="stylesheet" />
+    <link href="css/profile.css" rel="stylesheet"/>
     </head>
     <body>
                 
@@ -51,9 +57,10 @@ if(user==null)
             class="col-xl-9 d-flex align-items-center justify-content-between"
           >
             <h1 class="logo"><a href="index.jsp">WebTechBlog</a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
+            <a href="#" class="login-signup-btn scrollto" data-toggle="modal" data-target="#add-post-modal"
+              >Add Post</a
+            >
+            
             <nav class="nav-menu d-none d-lg-block">
               <ul>
                 <li class="active"><a href="index.jsp">Home</a></li>
@@ -90,6 +97,67 @@ if(user==null)
     <br>
   
     <!-- Button trigger modal -->
+    
+    
+    
+    <!--main body of the page-->
+
+        <main>
+            <div class="container">
+                <div class=" row mt-4 ">
+                    <!--first col-->
+                    <div class="col-lg-3">
+                        <!--categories-->
+                        <div>
+                            <a href="#" onclick="getPosts(0, this)"  >
+                                All Posts
+                            </a>
+                            <!--categories-->
+                                                            <ol class="gradient-list">
+
+
+                            <%                                PostDao d = new PostDao(ConnectionProvider.getConnection());
+                                ArrayList<Category> list1 = d.getAllCategories();
+                                for (Category cc : list1) {
+                            %>
+                            
+
+                            
+                            
+                            <li><a href="#" class="c-link active" onclick="getPosts(<%= cc.getCid()%>, this)" ><%= cc.getName()%></a></li>
+    
+                           
+
+
+                            <%                                        }
+    
+                            %>
+                            </ol>
+                        </div>
+
+                    </div>
+
+                    <!--second col-->
+                    <div class="col-lg-9" >
+                        <!--posts-->
+                        <div class="container text-center" id="loader">
+                            <i class="fa fa-refresh fa-3x fa-spin"></i>
+                            <h3 class="mt-2">Loading...</h3>
+                        </div>
+
+                        <div class="container-fluid" id="post-container">
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+    
+    
+    
 
 
 <!-- Modal -->
@@ -205,6 +273,77 @@ if(user==null)
   </div>
 </div>
     
+         <!--add post modal-->
+         
+ 
+<div class="modal fade" id="add-post-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Add Blog</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+
+
+
+<form id="add-post-form" action="AddPostServlet" method="post">
+
+                                 <div class="form-group">
+                                <select class="form-control" name="cid">
+                                    <option selected disabled>---Select Category---</option>
+
+                                    <%
+                                        PostDao postd = new PostDao(ConnectionProvider.getConnection());
+                                        ArrayList<Category> list = postd.getAllCategories();
+                                        for (Category c : list) {
+                                    %>
+                                    <option value="<%= c.getCid()%>"><%= c.getName()%></option>
+
+                                    <%
+                                        }
+                                    %>
+                                </select>
+                            </div>
+                                
+
+                            <div class="form-group">
+                                <input name="pTitle" type="text" placeholder="Enter post Title" class="form-control"/>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea name="pContent" class="form-control" style="height: 200px;" placeholder="Enter your content"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="pCode" class="form-control" style="height: 200px;" placeholder="Enter your program (if any)"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Select your pic..</label>
+                                <br>
+                                <input type="file" name="pic"  >
+                            </div>
+
+                            <div class="container text-center">
+                                <button type="submit" class="btn btn-outline-primary">Post </button>
+                            </div>
+
+                        </form>
+
+      </div>
+      <!--Footer-->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary">Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal: modalCart -->
     
     
         
@@ -234,6 +373,8 @@ if(user==null)
       crossorigin="anonymous"
     ></script>
     <script src="jquery/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    
     <script src="js/navbar2.js"></script>
      <script>
                                 $(document).ready(function () {
@@ -256,6 +397,69 @@ if(user==null)
                                     });
                                 });
         </script>
+        
+        <!--//now add post js-->
+        
+        <script>
+            $(document).ready(function (e) {
+                //
+                $("#add-post-form").on("submit", function (event) {
+                    //this code gets called when form is submitted....
+                    event.preventDefault();
+                    console.log("you have clicked on submit..");
+                    let form = new FormData(this);
+                    //now requesting to server
+                    $.ajax({
+                        url: "AddPostServlet",
+                        type: 'POST',
+                        data: form,
+                        success: function (data, textStatus, jqXHR) {
+                            //success ..
+                            console.log(data);
+                            if (data.trim() == 'done')
+                            {
+                                swal("Good job!", "saved successfully", "success");
+                            } else
+                            {
+                             swal("Error!!", "Something went wrong try again...", "error");
+                             }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                          //  error..
+                            swal("Error!!", "Something went wrong try again...", "error");
+                        },
+                        processData: false,
+                        contentType: false
+                    });
+                });
+            });
+        </script>
+
+        <!--loading post using ajax-->
+        <script>
+            function getPosts(catId, temp) {
+                $("#loader").show();
+                $("#post-container").hide();
+                $(".c-link").removeClass('active');
+                $.ajax({
+                    url: "load_posts.jsp",
+                    data: {cid: catId},
+                    success: function (data, textStatus, jqXHR) {
+                        console.log(data);
+                        $("#loader").hide();
+                        $("#post-container").show();
+                        $('#post-container').html(data);
+                        $(temp).addClass('active');
+                    }
+                });
+            }
+            $(document).ready(function (e) {
+                let allPostRef = $('.c-link')[0];
+                getPosts(0, allPostRef);
+            });
+        </script>
+        
+        
         
     </body>
 </html>
