@@ -200,7 +200,6 @@
                          {
                              swal(data);
                          }
-                   
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         $('#submit').show();

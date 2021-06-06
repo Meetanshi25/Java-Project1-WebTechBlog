@@ -43,10 +43,10 @@
 
     <div class="col-md-6 mt-2">
         <div class="card">
-            <img class="card-img-top" src="blogs_pics/<%= p.getpPic()%>" alt="Card image cap">
+            <img class="card-img-top " src="blogs_pics/<%= p.getpPic()%>" alt="Card image cap">
             <div class="card-body">
                 <b><%= p.getpTitle()%></b>
-                <p><%= p.getpContent()%></p>
+                <!--<p><%= p.getpContent()%></p>-->
                 
                 
 
@@ -56,12 +56,12 @@
                     LikeDao ld = new LikeDao(ConnectionProvider.getConnection());
                 %>
 
-                <a href="#!" onclick="doLike(<%= p.getPid()%>,<%= uuu.getId()%>)" class="btn btn-outline-light btn-sm" style="background: #009961"> <i class="fa fa-thumbs-o-up"></i> <span class="like-counter"><%= ld.countLikeOnPost(p.getPid())%></span>  </a>
+                <a href="#!" onclick="doLike(<%= p.getPid()%>,<%= uuu.getId()%>)" class="btn btn-outline-light btn-sm" style="background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);"> <i class="fa fa-thumbs-o-up"></i> <span class="like-counter"><%= ld.countLikeOnPost(p.getPid())%></span>  </a>
                 
                 <a  style="background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);" href="#!" class="btn btn-outline-light btn-sm"> <i class="fa fa-commenting-o"></i> <span>20</span>  </a>
 
 
-                <a href="show_blog_page.jsp?post_id=<%= p.getPid()%>" class="btn btn-outline-light btn-sm" style="background: linear-gradient(135deg, #83e4e2 0%, #a2ed56 100%)">Read More...</a>
+                <a href="show_blog_page.jsp?post_id=<%= p.getPid()%>" class="btn btn-outline-light btn-sm" style="background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);" >Read More...</a>
                             </div>
 
         </div>

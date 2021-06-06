@@ -130,4 +130,44 @@ public class UserDao {
         return f;
     }
     
+    
+    //used in displaying blogs
+    public User getUserByUserId(int userId) {
+        User user = null;
+        try {
+            String q = "select * from user where id=?";
+            PreparedStatement ps = this.con.prepareStatement(q);
+            ps.setInt(1, userId);
+            ResultSet set = ps.executeQuery();
+            if (set.next()) {
+                user = new User();
+
+//             data from db
+                String name = set.getString("name");
+//             set to user object
+                user.setName(name);
+
+                user.setId(set.getInt("id"));
+                       user.setEmail(set.getString("email"));
+                       user.setPassword(set.getString("password"));
+                       if(set.getString("about")==null)
+                       {
+                           user.setAbout("hi, i am a learner");
+                       }
+                       else
+                       {
+                           user.setAbout(set.getString("about"));
+                       }
+                       
+                       user.setDate(set.getObject("dob",LocalDate.class));
+                       user.setDateTime(set.getTimestamp("registerdate"));
+                       user.setProfile(set.getString("profile"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+    
 }

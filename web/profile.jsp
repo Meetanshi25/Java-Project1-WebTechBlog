@@ -49,7 +49,7 @@ if(user==null)
     <body>
                 
         
-        <!-- ======= Header ======= -->
+         <!-- ======= Header ======= -->
     <header id="header" class="fixed-top header-scrolled">
       <div class="container-fluid">
         <div class="row justify-content-center">
@@ -57,9 +57,9 @@ if(user==null)
             class="col-xl-9 d-flex align-items-center justify-content-between"
           >
             <h1 class="logo"><a href="index.jsp">WebTechBlog</a></h1>
-            <a href="#" class="login-signup-btn scrollto" data-toggle="modal" data-target="#add-post-modal"
+<!--            <a href="#" class="login-signup-btn scrollto" data-toggle="modal" data-target="#add-post-modal"
               >Add Post</a
-            >
+            >-->
             
             <nav class="nav-menu d-none d-lg-block">
               <ul>
@@ -74,12 +74,15 @@ if(user==null)
                     <li><a href="#">Drop Down 4</a></li>
                   </ul>
                 </li>
+                
+           
               </ul>
+                
             </nav>
             <!-- .nav-menu -->
 
-            <a href="#" data-toggle="modal" data-target="#profile-modal" class="login-signup-btn scrollto"
-              > <i class="fa-solid fa-user"></i><%=user.getName()%></a
+            <a href="#" data-toggle="modal" data-target="#profile-modal" class="login-signup-btn scrollto nav-menu"
+              > <span class="fa fa-user-circle "></span></i><%=user.getName()%></a
             >
             <a href="LogoutServlet" class="login-signup-btn scrollto"
               >logout</a
@@ -89,6 +92,7 @@ if(user==null)
       </div>
     </header>
     <!-- End Header -->
+    
     
     <!-- ======= Profile Modal ======= -->
     
@@ -349,7 +353,7 @@ if(user==null)
         
     
 <!--    ======= Footer ======= -->
-        <%--<%@include file="footer.jsp" %>--%>
+        <%@include file="footer.jsp" %>
         
         
         
