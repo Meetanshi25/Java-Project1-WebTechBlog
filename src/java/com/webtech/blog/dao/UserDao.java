@@ -105,7 +105,7 @@ public class UserDao {
 
         boolean f = false;
         try {
-            System.out.print("errooooooorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+            
             
 
             String query = "update user set name=? , email=? , password=?, dob=? , profile=?,about=?  where  id =?";

@@ -42,7 +42,7 @@
         <%@include file="navbar2.jsp" %>
         
         <!-- ======= login Form Section====== -->
-        <section id="login" class="d-flex flex-column justify-content-center" style="background-color: #E9967A">     
+        <section id="login" class="d-flex flex-column justify-content-center" style="background-color: #E9967A; margin-top: 50px">     
             <div class="container h-100 " style="background-color: #E9967A">
         <div class="row h-100 justify-content-center align-items-center">
             <form action="LoginServlet" method="POST" class="col-md-12">

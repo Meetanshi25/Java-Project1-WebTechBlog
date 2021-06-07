@@ -8,12 +8,16 @@
 <%@page import="com.webtech.blog.dao.PostDao"%>
 <%@page import="com.webtech.blog.entities.Post"%>
 <%@page import="com.webtech.blog.entities.User"%>
+
 <%@page  errorPage="errorpage.jsp" %>
+
 
 <%
     User user = (User) session.getAttribute("currentuser");
     if (user == null) {
+        
         response.sendRedirect("login.jsp");
+        
     }
 %>
 
@@ -28,7 +32,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><%= p.getpTitle()%> || TechBlog by Learn Code with Durgesh </title>
+        <title><%= p.getpTitle()%></title>
 
         <!--css-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -74,6 +78,8 @@
                 background-attachment: fixed;
             }*/
         </style>
+        <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_IN/sdk.js#xfbml=1&version=v10.0" nonce="AekoAhmu"></script>
     </head>
     <body>
 
@@ -94,7 +100,7 @@
                     
 
                     <li class="nav-item">
-                        <a href="#" class="login-signup-btn scrollto" data-toggle="modal" data-target="#add-post-modal"
+                        <a href="#" class="login-signup-btn scrollto" data-toggle="modal" data-target="#add-post-modal" style="margin-bottom: 4px"
               >Add Post</a
             >
                     </li>
@@ -103,13 +109,13 @@
 
                 <ul class="navbar-nav mr-right">
                     <li class="nav-item">
-                        <a href="#" data-toggle="modal" data-target="#profile-modal" class="login-signup-btn scrollto"
+                        <a href="#" data-toggle="modal" data-target="#profile-modal" class="login-signup-btn scrollto" style="margin-bottom: 4px"
               > <span class="fa fa-user-circle "></span></i><%=user.getName()%></a
             >
                     </li>
 
                     <li class="nav-item">
-                        <a href="LogoutServlet" class="login-signup-btn scrollto"
+                        <a href="LogoutServlet" class="login-signup-btn scrollto" style="margin-bottom: 4px"
               >logout</a
             >
                     </li>
@@ -143,7 +149,7 @@
 
                         <div class="card-body">
 
-                            <img class="card-img-top my-2" src="blogs_pics/<%= p.getpPic()%>" alt="Card image cap">
+                            <img style="height: 350px" class="card-img-top my-2" src="blogs_pics/<%= p.getpPic()%>" alt="Card image cap">
 
 
                             <div class="row my-3 row-user">
@@ -169,7 +175,7 @@
                             </div>
 
                         </div>
-                        <div class="card-footer primary-background">
+                        <div class="card-footer">
 
 
                             <%
@@ -182,6 +188,9 @@
 
 
                         </div>
+                            <div class="card-footer">
+                                <div class="fb-comments" data-href="http://localhost:8084/WebTechBlog/show_blog_page.jsp?post_id=<%=p.getPid() %>" data-width="" data-numposts="5"></div>
+                            </div>
 
 
 
@@ -402,18 +411,18 @@
                                     {
                                         if (editStatus == false)
                                         {
-                                            $("#profile-details").hide()
+                                            $("#profile-details").hide();
                                             $("#profile-edit").show();
                                             editStatus = true;
-                                            $(this).text("Back")
+                                            $(this).text("Back");
                                         } else
                                         {
-                                            $("#profile-details").show()
+                                            $("#profile-details").show();
                                             $("#profile-edit").hide();
                                             editStatus = false;
-                                            $(this).text("Edit")
+                                            $(this).text("Edit");
                                         }
-                                    })
+                                    });
                                 });
         </script>
         <!--now add post js-->
@@ -423,7 +432,7 @@
                 $("#add-post-form").on("submit", function (event) {
                     //this code gets called when form is submitted....
                     event.preventDefault();
-                    console.log("you have clicked on submit..")
+                    console.log("you have clicked on submit..");
                     let form = new FormData(this);
                     //now requesting to server
                     $.ajax({
@@ -447,10 +456,11 @@
                         },
                         processData: false,
                         contentType: false
-                    })
-                })
-            })
+                    });
+                });
+            });
         </script>
+        
 
     </body>
 </html>

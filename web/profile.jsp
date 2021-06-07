@@ -3,6 +3,7 @@
     Created on : 2 Jun, 2021, 8:25:40 PM
     Author     : MEETANSHI
 --%>
+<%@page import="com.webtech.blog.entities.Message"%>
 <%@page import="com.webtech.blog.dao.PostDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.webtech.blog.entities.Category"%>
@@ -45,68 +46,112 @@ if(user==null)
     <link href="css/style.css" rel="stylesheet"/>
     <link href="css/login.css" rel="stylesheet" />
     <link href="css/profile.css" rel="stylesheet"/>
+       <style>
+/*            .banner-background{
+                clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 91%, 63% 100%, 22% 91%, 0 99%, 0 0);
+            }*/
+            .post-title{
+                font-weight: 100;
+                font-size: 30px;
+            }
+            .post-content{
+                font-weight: 100;
+                font-size: 25px;
+            }
+            .post-date{
+                font-style: italic;
+                font-weight: bold;
+            }
+            .post-user-info{
+                font-size: 20px;
+            }
+            .row-user{
+                border:1px solid #e2e2e2;
+                padding-top: 15px;
+            }
+            #heading{
+                font-size: 28px;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: white;
+            }
+/*            body{
+                background:url(img/bg.jpeg);
+                background-size: cover;
+                background-attachment: fixed;
+            }*/
+        </style>
     </head>
     <body>
                 
         
-         <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top header-scrolled">
-      <div class="container-fluid">
-        <div class="row justify-content-center">
-          <div
-            class="col-xl-9 d-flex align-items-center justify-content-between"
-          >
-            <h1 class="logo"><a href="index.jsp">WebTechBlog</a></h1>
-<!--            <a href="#" class="login-signup-btn scrollto" data-toggle="modal" data-target="#add-post-modal"
-              >Add Post</a
-            >-->
-            
-            <nav class="nav-menu d-none d-lg-block">
-              <ul>
-                <li class="active"><a href="index.jsp">Home</a></li>
-                <li><a href="#">Blogs to Explore</a></li>
-                <li class="drop-down">
-                  <a href="">Categories</a>
-                  <ul>
-                    <li><a href="#">Drop Down 1</a></li>
-                    <li><a href="#">Drop Down 2</a></li>
-                    <li><a href="#">Drop Down 3</a></li>
-                    <li><a href="#">Drop Down 4</a></li>
-                  </ul>
-                </li>
-                
-           
-              </ul>
-                
-            </nav>
-            <!-- .nav-menu -->
 
-            <a href="#" data-toggle="modal" data-target="#profile-modal" class="login-signup-btn scrollto nav-menu"
+<!--navbar--> 
+        <nav class="navbar navbar-expand-lg fixed-top header-scrolled" style="background-color:#c96567">
+            <h1 class="logo" ><a id="heading" href="index.jsp">WebTechBlog</a></h1>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                   
+                    <li class="nav-item">
+                        <a href="#" class="login-signup-btn scrollto" data-toggle="modal" data-target="#add-post-modal" style="margin-bottom: 4px"
+              >Add Post</a
+            >
+                    </li>
+
+                </ul>
+
+                <ul class="navbar-nav mr-right">
+                    <li class="nav-item">
+                        <a href="#" data-toggle="modal" data-target="#profile-modal" class="login-signup-btn scrollto" style="margin-bottom: 4px"
               > <span class="fa fa-user-circle "></span></i><%=user.getName()%></a
             >
-            <a href="LogoutServlet" class="login-signup-btn scrollto"
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="LogoutServlet" class="login-signup-btn scrollto" style="margin-bottom: 4px"
               >logout</a
             >
-              </div>
-        </div>
-      </div>
-    </header>
-    <!-- End Header -->
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <!--end of navbar-->
     
     
     <!-- ======= Profile Modal ======= -->
     
-    <br>
-    <br>
-    <br>
-  
-    <!-- Button trigger modal -->
+    
+    
+    <% 
+    Message m=(Message)session.getAttribute("msg");
+    
+if(m!=null)
+{
+    %>
+     <div class="alert <%=m.getCssClass() %>" role="alert">
+ <%= m.getContent() %>
+</div>
+     
+     <%
+         
+         session.removeAttribute("msg");
+         }
+         %>    
     
     
     
     <!--main body of the page-->
 
-        <main>
+    <main style="margin-top: 100px">
             <div class="container">
                 <div class=" row mt-4 ">
                     <!--first col-->
@@ -329,7 +374,7 @@ if(user==null)
                             <div class="form-group">
                                 <label>Select your pic..</label>
                                 <br>
-                                <input type="file" name="pic"  >
+                                <input type="file" name="pic" required >
                             </div>
 
                             <div class="container text-center">
@@ -342,8 +387,7 @@ if(user==null)
       <!--Footer-->
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
-        <button class="btn btn-primary">Checkout</button>
-      </div>
+              </div>
     </div>
   </div>
 </div>

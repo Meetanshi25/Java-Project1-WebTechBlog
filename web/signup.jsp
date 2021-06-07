@@ -43,7 +43,7 @@
         <%@include file="navbar2.jsp" %>
         
         <!-- ======= Sign Up Form Section====== -->
-                       <section id="signup" class="d-flex flex-column justify-content-center" style="background-color: #E9967A">     
+                       <section id="signup" class="d-flex flex-column justify-content-center" style="background-color: #E9967A; margin-top: 20px">     
             <div class="container h-100 " style="background-color: #E9967A">
         <div class="row h-100 justify-content-center align-items-center">
             <form method="POST" action="RegisterServlet" class="col-md-12" id="register-form">
@@ -188,9 +188,7 @@
                          
                          if(data.trim()==='done')
                          {
-                             
-                         
-                         
+                    
                       swal("SignUp Successfull.Redirecting to the login page")
                    .then((value) => {
                     window.location="login.jsp";

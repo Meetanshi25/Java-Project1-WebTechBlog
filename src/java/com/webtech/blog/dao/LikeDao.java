@@ -19,6 +19,8 @@ public class LikeDao {
         this.con = con;
     }
 
+    
+    //liking a post
     public boolean insertLike(int pid, int uid) {
         boolean f = false;
         try {
@@ -36,6 +38,8 @@ public class LikeDao {
 
         return f;
     }
+    
+    //counting no. of likes
 
     public int countLikeOnPost(int pid) {
         int count = 0;
@@ -65,13 +69,15 @@ public class LikeDao {
             ResultSet set = p.executeQuery();
             if (set.next()) {
                 f = true;
-            }
+            } 
 
         } catch (Exception e) {
         }
         return f;
     }
 
+    
+    //unliking a comment
     public boolean deleteLike(int pid, int uid) {
         boolean f = false;
         try {

@@ -9,6 +9,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.webtech.blog.helper.ConnectionProvider"%>
 <%@page import="com.webtech.blog.dao.PostDao"%>
+<%@page  errorPage="errorpage.jsp" %>
 
 
 <div class="info">
@@ -41,9 +42,9 @@
         for (Post p : posts) {
     %>
 
-    <div class="col-md-6 mt-2">
+    <div style="margin-bottom: 30px"class="col-md-6 mt-2">
         <div class="card">
-            <img class="card-img-top " src="blogs_pics/<%= p.getpPic()%>" alt="Card image cap">
+            <img style="height: 230px" class="card-img-top " src="blogs_pics/<%= p.getpPic()%>" alt="Card image cap">
             <div class="card-body">
                 <b><%= p.getpTitle()%></b>
                 <!--<p><%= p.getpContent()%></p>-->
@@ -51,7 +52,7 @@
                 
 
             </div>
-            <div class="card-footer primary-background text-center">
+            <div class="card-footer text-center">
                 <% 
                     LikeDao ld = new LikeDao(ConnectionProvider.getConnection());
                 %>
@@ -76,3 +77,4 @@
     %>
 
 </div>
+   <script src="js/myjs.js" type="text/javascript"></script>
