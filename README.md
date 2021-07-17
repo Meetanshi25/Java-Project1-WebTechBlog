@@ -13,4 +13,6 @@ and share their knowledge in the various fields of technology.
 Backend: Java,JDBC,JSP,SERVLET
 Database: MYSql
 
+For more do checkout images folder
+
 ![image](https://github.com/Meetanshi25/Java-Project1-WebTechBlog/blob/master/images/Main.png?raw=true)
