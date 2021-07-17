@@ -185,7 +185,7 @@
                             <a style="background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);" href="#!" onclick="doLike(<%= p.getPid()%>,<%= user.getId()%>)" class="btn btn-outline-light btn-sm"> <i class="fa fa-thumbs-o-up"></i> <span class="like-counter"><%= ld.countLikeOnPost(p.getPid())%></span>  </a>
                             <a style="background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);" href="#!" class="btn btn-outline-light btn-sm"> <i class="fa fa-commenting-o"></i> <span>20</span>  </a>
 
-
+                              
 
                         </div>
                             <div class="card-footer">
